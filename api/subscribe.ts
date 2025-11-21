@@ -29,12 +29,15 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({ message: 'Invalid email format' });
   }
 
-  // Initialize Supabase
-  const supabaseUrl = process.env.SUPABASE_URL;
+  // Initialize Supabase (use non-VITE vars on backend for security)
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !supabaseServiceKey) {
-    console.error('Supabase configuration missing');
+    console.error('Supabase configuration missing', { 
+      hasUrl: !!supabaseUrl, 
+      hasKey: !!supabaseServiceKey 
+    });
     return res.status(500).json({ message: 'Server misconfiguration' });
   }
 
@@ -90,7 +93,7 @@ export default async function handler(req: any, res: any) {
     // 3. Send welcome email via Resend
     try {
       await resend.emails.send({
-        from: 'Bored Tourist <onboarding@boredtourist.com>',
+        from: 'Bored Tourist <bookings@boredtourist.com>',
         to: email,
         subject: 'Welcome to Bored Tourist! 🌍',
         html: `
