@@ -26,16 +26,22 @@ export default async function handler(req: any, res: any) {
       .insert([{ email, status: 'subscribed' }]);
 
     // Handle duplicate emails gracefully (ignore error if already subscribed)
+    // Postgres error 23505 is "unique_violation"
     if (dbError && dbError.code !== '23505') {
       console.error('Supabase Error:', dbError);
       throw new Error('Failed to save to database');
     }
 
-    // 2. Send Email via Resend (Only if we have an API Key)
-    if (process.env.RESEND_API_KEY) {
-      
-      // Paste your Resend Template HTML here
-      const EMAIL_TEMPLATE_HTML = `
+    // 2. Send Email via Resend
+    // CHECK 1: Is the API Key present?
+    if (!process.env.RESEND_API_KEY) {
+        console.error("RESEND_API_KEY is missing in environment variables.");
+        // We return a 500 error here so you can see it in the UI red box and fix the Vercel Settings
+        return res.status(500).json({ error: 'Missing RESEND_API_KEY in Server Settings.' });
+    }
+
+    // Paste your Resend Template HTML here
+    const EMAIL_TEMPLATE_HTML = `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" lang="en">
 
@@ -198,21 +204,24 @@ export default async function handler(req: any, res: any) {
   <!--/$-->
 </body>
 </html>
-      `;
+    `;
 
-      const { error: emailError } = await resend.emails.send({
-        // NOTE: Using 'onboarding@resend.dev' ensures it works for testing before you verify your domain.
-        // Once you verify 'boredtourist.com' on Resend, change this to 'Bored Tourist <bookings@boredtourist.com>'
-        from: 'Bored Tourist <onboarding@resend.dev>',
-        to: email,
-        subject: 'Take Your Antidote to Boredom 🔥',
-        html: EMAIL_TEMPLATE_HTML, 
-      });
+    // CHECK 2: Try to send
+    const { error: emailError } = await resend.emails.send({
+      // IMPORTANT:
+      // 'from': Must be 'onboarding@resend.dev' if you don't have a verified domain.
+      // 'to': If using 'onboarding@resend.dev', you can ONLY send to the email you used to signup for Resend.
+      from: 'Bored Tourist <onboarding@resend.dev>',
+      to: email,
+      subject: 'Take Your Antidote to Boredom 🔥',
+      html: EMAIL_TEMPLATE_HTML, 
+    });
 
-      if (emailError) {
-        console.error('Resend Error:', emailError);
-        // We continue even if email fails, as user is saved in DB
-      }
+    if (emailError) {
+      console.error('Resend Error:', emailError);
+      // We return 500 so the Frontend shows the error message in red.
+      // This is crucial for debugging why it failed (e.g. "To" email not allowed in free tier)
+      return res.status(500).json({ error: `Email Not Sent: ${emailError.message}` });
     }
 
     return res.status(200).json({ message: 'Success' });
