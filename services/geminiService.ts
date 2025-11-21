@@ -1,9 +1,21 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Removed top-level initialization to prevent startup crashes
+// const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getVibeCheckRecommendation = async (userVibe: string): Promise<string> => {
   try {
+    // Initialize the client only when needed (Lazy Initialization)
+    // This prevents the entire app from crashing if the API key is missing at startup
+    const apiKey = process.env.API_KEY;
+    
+    if (!apiKey) {
+      console.error("API Key is missing from environment variables.");
+      return "System offline. The developer forgot the API key. Oops.";
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+
     const systemInstruction = `
       You are a sassy, irreverent, and high-energy local guide for Lisbon, Portugal. 
       The user is a "Bored Tourist" looking for something cool, not boring.
