@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
 import { ArrowRightIcon } from './Icons';
+import { supabase } from '../services/supabaseClient';
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -14,39 +16,31 @@ export const Footer: React.FC = () => {
     setErrorMessage('');
 
     try {
-      // We send the request to OUR own backend (Next.js / Vercel Function)
-      // This avoids CORS issues and hides the API Key.
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
+      // Insert email and current timestamp into Supabase
+      const { error } = await supabase
+        .from('subscribers')
+        .insert([
+          { 
+            email, 
+            subscribed_at: new Date().toISOString(),
+            status: 'subscribed' // Optional: explicitly set status if your table uses it
+          }
+        ]);
 
-      // DEMO MODE HANDLING:
-      // In this preview environment (Client-side only), the /api/subscribe route doesn't actually exist as a server.
-      // It will likely return 404 (Not Found) or 405.
-      // To make the UI feel "real" for the demo, we simulate success on 404/405 errors.
-      // In production (Vercel), this code block will be skipped because response.ok will be true.
-      if (response.status === 404 || response.status === 405) {
-        console.warn('API Route not found (Expected in Demo). Simulating success.');
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Fake delay
-        setStatus('success');
-        setEmail('');
-        return;
-      }
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Subscription failed');
+      if (error) {
+        // Handle unique constraint violation (duplicate email) gracefully
+        // Error code 23505 is for unique_violation in Postgres
+        if (error.code === '23505') { 
+           setStatus('success'); // Pretend success for UX if already subscribed
+           return;
+        }
+        throw error;
       }
 
       setStatus('success');
       setEmail('');
       
-      // Reset status after a few seconds so they can add another email if they want
+      // Reset status after a few seconds
       setTimeout(() => setStatus('idle'), 5000);
 
     } catch (error: any) {
