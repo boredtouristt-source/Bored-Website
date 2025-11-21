@@ -42,46 +42,111 @@ export default async function handler(req: any, res: any) {
         return res.status(500).json({ error: 'Missing RESEND_API_KEY config.' });
     }
 
+    // Improved HTML Template specifically designed to look good even if images are blocked
     const EMAIL_TEMPLATE_HTML = `
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="ltr" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta content="width=device-width" name="viewport" />
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style>
+    /* Reset & Basics */
+    body { background-color: #000000; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+    
+    /* Typography */
+    h1 { color: #ccff00; text-transform: uppercase; font-weight: 900; font-size: 32px; margin-bottom: 24px; letter-spacing: -1px; line-height: 1.1; }
+    p { font-size: 18px; line-height: 1.6; color: #cccccc; margin-bottom: 24px; }
+    
+    /* Image Handling - Makes it look good even if blocked */
+    .image-wrapper { 
+      background-color: #1a1a1a; /* Dark grey placeholder */
+      border-radius: 12px; 
+      overflow: hidden; 
+      margin-bottom: 32px;
+      border: 1px solid #333333;
+    }
+    img { 
+      width: 100%; 
+      height: auto; 
+      display: block; 
+      border: 0; 
+      outline: none; 
+      /* Styling the Alt Text if image is broken */
+      color: #ccff00; 
+      font-size: 20px; 
+      font-weight: bold; 
+      text-align: center; 
+      background-color: #1a1a1a;
+      font-family: monospace;
+    }
+
+    /* Footer */
+    .footer { font-size: 12px; color: #666666; margin-top: 60px; border-top: 1px solid #333333; padding-top: 20px; }
+    .footer a { color: #888888; text-decoration: none; }
+  </style>
 </head>
-<body style="background-color:#000000; color: white; font-family: sans-serif;">
-  <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-    <img src="https://storage.googleapis.com/bored_tourist_media/images/gallery/fotomail.png" width="100%" style="border-radius: 8px;" />
-    <h1 style="color: #ccff00; text-transform: uppercase; font-weight: 900;">You're in.</h1>
-    <p style="font-size: 18px; line-height: 1.6; color: #dddddd;">
+<body>
+  <div class="container">
+    
+    <!-- Image Wrapper with Background Color for robustness -->
+    <div class="image-wrapper">
+      <img 
+        src="https://storage.googleapis.com/bored_tourist_media/images/gallery/fotomail.png" 
+        alt="BORED TOURIST: WELCOME TO THE CHAOS" 
+        width="600" 
+        height="300"
+      />
+    </div>
+    
+    <h1>You're in.</h1>
+    
+    <p>
       You’ve just taken the first step towards ditching the usual travel clichés. 
       Nobody wants to be the "bored tourist," and we’re building the antidote.
     </p>
-    <p style="font-size: 16px; color: #999;">
-      We'll keep you updated. See you soon.
+    
+    <p>
+      We'll keep you updated on the beta launch in Lisbon. Expect invites, chaos, and zero tourist traps.
     </p>
+
+    <div class="footer">
+      <p style="margin-bottom: 8px;">Bored Tourist | Lisbon, Portugal</p>
+      <p>You received this because you swiped right on adventure.</p>
+    </div>
   </div>
 </body>
 </html>
+    `;
+
+    // Plain Text Version (Important for Spam Filters & Deliverability)
+    const EMAIL_TEXT = `
+BORED TOURIST: WELCOME TO THE CHAOS
+
+You're in.
+
+You’ve just taken the first step towards ditching the usual travel clichés. Nobody wants to be the "bored tourist," and we’re building the antidote.
+
+We'll keep you updated on the beta launch in Lisbon. Expect invites, chaos, and zero tourist traps.
+
+--
+Bored Tourist | Lisbon, Portugal
+You received this because you swiped right on adventure.
     `;
 
     const { error: emailError } = await resend.emails.send({
       from: 'Bored Tourist <bookings@boredtourist.com>',
       to: email,
       subject: 'Take Your Antidote to Boredom 🔥',
-      html: EMAIL_TEMPLATE_HTML, 
+      html: EMAIL_TEMPLATE_HTML,
+      text: EMAIL_TEXT, // <-- Adding this text version helps Gmail trust you more
     });
 
     if (emailError) {
-      // INTELLIGENT HANDLING:
-      // Even in production, we keep this check just in case the domain verification fails temporarily,
-      // ensuring the user still sees a "Success" message on the frontend if their data is safe in the DB.
       if (emailError.message?.includes('only send testing emails') || emailError.message?.includes('verify a domain')) {
         console.warn('Resend Verification Issue: Email failed, but DB save was successful.');
         return res.status(200).json({ message: 'Subscribed (Email skipped due to verification status)' });
       }
-
-      // Real error (like API key wrong, or service down)
       console.error('Resend Error:', emailError);
       return res.status(500).json({ error: `Email Not Sent: ${emailError.message}` });
     }
