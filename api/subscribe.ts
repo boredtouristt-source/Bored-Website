@@ -42,79 +42,139 @@ export default async function handler(req: any, res: any) {
         return res.status(500).json({ error: 'Missing RESEND_API_KEY config.' });
     }
 
-    // Improved HTML Template specifically designed to look good even if images are blocked
+    // Improved HTML Template: Mobile Optimized & High Contrast
     const EMAIL_TEMPLATE_HTML = `
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're in.</title>
   <style>
-    /* Reset & Basics */
-    body { background-color: #000000; color: #ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+    /* Client-specific resets */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
     
-    /* Typography */
-    h1 { color: #ccff00; text-transform: uppercase; font-weight: 900; font-size: 32px; margin-bottom: 24px; letter-spacing: -1px; line-height: 1.1; }
-    p { font-size: 18px; line-height: 1.6; color: #cccccc; margin-bottom: 24px; }
-    
-    /* Image Handling - Makes it look good even if blocked */
-    .image-wrapper { 
-      background-color: #1a1a1a; /* Dark grey placeholder */
-      border-radius: 12px; 
-      overflow: hidden; 
-      margin-bottom: 32px;
-      border: 1px solid #333333;
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #000000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      width: 100% !important;
     }
-    img { 
-      width: 100%; 
-      height: auto; 
-      display: block; 
-      border: 0; 
-      outline: none; 
-      /* Styling the Alt Text if image is broken */
-      color: #ccff00; 
-      font-size: 20px; 
-      font-weight: bold; 
-      text-align: center; 
-      background-color: #1a1a1a;
+    
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      background-color: #ffffff;
+      padding-bottom: 40px;
+    }
+
+    .content {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+    }
+
+    /* Typography - Optimized for Readability */
+    h1 {
+      font-size: 36px;
+      line-height: 1.1;
+      font-weight: 900;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+
+    p {
+      font-size: 18px; /* Large size for mobile readability */
+      line-height: 1.6;
+      color: #000000;
+      margin: 0 0 24px 0;
+    }
+
+    /* Image Handling */
+    .image-container {
+      background-color: #f4f4f5;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      border: 1px solid #e4e4e7;
+    }
+    
+    img.hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      background-color: #f4f4f5;
+      color: #000000; /* Alt text color */
       font-family: monospace;
+      font-weight: bold;
+      text-align: center;
+      min-height: 100px;
     }
 
     /* Footer */
-    .footer { font-size: 12px; color: #666666; margin-top: 60px; border-top: 1px solid #333333; padding-top: 20px; }
-    .footer a { color: #888888; text-decoration: none; }
+    .footer {
+      border-top: 2px solid #000000;
+      padding-top: 24px;
+      margin-top: 40px;
+    }
+    
+    .footer p {
+      font-size: 14px;
+      color: #666666;
+      margin-bottom: 8px;
+    }
+    
+    /* Mobile specific adjustments */
+    @media only screen and (max-width: 480px) {
+      h1 { font-size: 32px !important; }
+      p { font-size: 18px !important; }
+      .content { padding: 16px !important; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    
-    <!-- Image Wrapper with Background Color for robustness -->
-    <div class="image-wrapper">
-      <img 
-        src="https://storage.googleapis.com/bored_tourist_media/images/gallery/fotomail.png" 
-        alt="BORED TOURIST: WELCOME TO THE CHAOS" 
-        width="600" 
-        height="300"
-      />
-    </div>
-    
-    <h1>You're in.</h1>
-    
-    <p>
-      You’ve just taken the first step towards ditching the usual travel clichés. 
-      Nobody wants to be the "bored tourist," and we’re building the antidote.
-    </p>
-    
-    <p>
-      We'll keep you updated on the beta launch in Lisbon. Expect invites, chaos, and zero tourist traps.
-    </p>
+  <center class="wrapper">
+    <div class="content">
+      
+      <!-- Header Image -->
+      <div class="image-container">
+        <img 
+          class="hero-img"
+          src="https://storage.googleapis.com/bored_tourist_media/images/gallery/fotomail.png" 
+          alt="BORED TOURIST: WELCOME TO THE CHAOS" 
+          width="600"
+        />
+      </div>
 
-    <div class="footer">
-      <p style="margin-bottom: 8px;">Bored Tourist | Lisbon, Portugal</p>
-      <p>You received this because you swiped right on adventure.</p>
+      <!-- Main Content -->
+      <h1>You're in.</h1>
+      
+      <p>
+        You’ve just taken the first step towards ditching the usual travel clichés. 
+        Nobody wants to be the "bored tourist," and we’re building the antidote.
+      </p>
+      
+      <p>
+        We'll keep you updated on the beta launch in Lisbon. Expect invites, chaos, and zero tourist traps.
+      </p>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p style="color: #000000; font-weight: bold;">Bored Tourist | Lisbon, Portugal</p>
+        <p>You received this because you swiped right on adventure.</p>
+      </div>
+      
     </div>
-  </div>
+  </center>
 </body>
 </html>
     `;
@@ -139,7 +199,7 @@ You received this because you swiped right on adventure.
       to: email,
       subject: 'Take Your Antidote to Boredom 🔥',
       html: EMAIL_TEMPLATE_HTML,
-      text: EMAIL_TEXT, // <-- Adding this text version helps Gmail trust you more
+      text: EMAIL_TEXT, 
     });
 
     if (emailError) {
