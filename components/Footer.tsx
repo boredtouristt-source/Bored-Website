@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { ArrowRightIcon } from './Icons';
-import { supabase } from '../services/supabaseClient';
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -16,25 +15,19 @@ export const Footer: React.FC = () => {
     setErrorMessage('');
 
     try {
-      // Insert email and current timestamp into Supabase
-      const { error } = await supabase
-        .from('subscribers')
-        .insert([
-          { 
-            email, 
-            subscribed_at: new Date().toISOString(),
-            status: 'subscribed' // Optional: explicitly set status if your table uses it
-          }
-        ]);
+      // Call our serverless function (api/subscribe.ts)
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
 
-      if (error) {
-        // Handle unique constraint violation (duplicate email) gracefully
-        // Error code 23505 is for unique_violation in Postgres
-        if (error.code === '23505') { 
-           setStatus('success'); // Pretend success for UX if already subscribed
-           return;
-        }
-        throw error;
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong');
       }
 
       setStatus('success');
@@ -46,7 +39,7 @@ export const Footer: React.FC = () => {
     } catch (error: any) {
       console.error('Subscription Error:', error);
       setStatus('error');
-      setErrorMessage('Something went wrong. Please try again.');
+      setErrorMessage(error.message || 'Something went wrong. Please try again.');
     }
   };
 
@@ -81,7 +74,7 @@ export const Footer: React.FC = () => {
            {status === 'success' ? (
               <div className="relative z-10 mx-auto max-w-md rounded-lg bg-black p-8 text-white animate-pulse shadow-2xl">
                 <p className="text-2xl font-black uppercase text-neon mb-2">You're on the list! ⚡</p>
-                <p className="text-sm text-gray-300">Check your inbox. We just sent some love.</p>
+                <p className="text-sm text-gray-300">Check your inbox. We just sent some chaos.</p>
               </div>
            ) : (
              <form onSubmit={handleSubmit} className="relative z-10 mx-auto flex max-w-md flex-col gap-4 md:flex-row">
@@ -106,7 +99,7 @@ export const Footer: React.FC = () => {
            )}
            
            {status === 'error' && (
-             <p className="relative z-10 mt-4 text-sm font-bold text-red-600 bg-red-100 inline-block px-4 py-2 rounded-md">
+             <p className="relative z-10 mt-4 text-sm font-bold text-red-600 bg-red-100 inline-block px-4 py-2 rounded-md border border-red-200">
                {errorMessage}
              </p>
            )}
