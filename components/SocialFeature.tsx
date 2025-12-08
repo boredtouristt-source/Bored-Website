@@ -68,7 +68,7 @@ export const SocialFeature: React.FC = () => {
                    </video>
                    
                    {/* Top overlay to hide status bar from screen recording */}
-                   <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black via-black/80 to-transparent z-10"></div>
+                   <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-black via-black/80 to-transparent z-10"></div>
                 </div>
              </div>
           </div>
