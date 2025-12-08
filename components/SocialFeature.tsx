@@ -66,7 +66,7 @@ export const SocialFeature: React.FC = () => {
                      loop 
                      playsInline
                    >
-                     <source src="https://storage.googleapis.com/bored_tourist_media/videos/example23.mov" type="video/mp4" />
+                     <source src="https://storage.googleapis.com/bored_tourist_media/Website/example1%202.mov" type="video/mov" />
                    </video>
 
                    {/* UI Overlay: Simulating "Saved" state */}
