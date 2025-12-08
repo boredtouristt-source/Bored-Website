@@ -84,18 +84,7 @@ export const Features: React.FC = () => {
 
           {/* Right Feature Column */}
           <div className="flex flex-col gap-12">
-            {/* Feature 4 (Replaced Tech-Powered with Context-Aware) */}
-             <div className="group">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 group-hover:bg-neon transition-colors">
-                <BrainIcon className="h-6 w-6 text-white group-hover:text-black" />
-              </div>
-              <h3 className="mb-2 text-2xl font-bold text-white">Context-Aware Algorithmic Discovery</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Our AI instantly builds perfect adventure recommendations by analyzing real-time local weather, the user's current mood, and immediate host availability.
-              </p>
-            </div>
-
-            {/* Feature 5 (New) */}
+            {/* Feature 4 - Live Adventure Map */}
              <div className="group">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 group-hover:bg-neon transition-colors">
                 <PinIcon className="h-6 w-6 text-white group-hover:text-black" />

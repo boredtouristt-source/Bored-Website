@@ -39,6 +39,22 @@ export const Hero: React.FC = () => {
         <div className="hidden md:flex items-center gap-8 text-sm font-bold tracking-wide text-white">
           <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="hover:text-neon transition-colors cursor-pointer">HOW IT WORKS</a>
           <a href="#vibecheck" onClick={(e) => scrollToSection(e, 'vibecheck')} className="hover:text-neon transition-colors cursor-pointer">VIBE CHECK</a>
+          
+          {/* Language Selector */}
+          <select 
+            className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-white/20 transition-colors"
+            defaultValue="en"
+            onChange={(e) => {
+              // For now, just alert. Later you can implement full i18n
+              if (e.target.value === 'pt') {
+                alert('Português em breve! 🇵🇹');
+              }
+            }}
+          >
+            <option value="en">🇬🇧 EN</option>
+            <option value="pt">🇵🇹 PT</option>
+          </select>
+          
           <button 
             onClick={(e) => scrollToSection(e, 'signup')} 
             className="bg-white text-black px-6 py-3 font-black uppercase tracking-wider hover:bg-neon transition-colors clip-path-polygon cursor-pointer"
@@ -50,16 +66,6 @@ export const Hero: React.FC = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center mt-[-80px]">
-        {/* Travelers Pill */}
-        <div className="mb-6 flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/20">
-          <div className="flex -space-x-2">
-             <img className="h-6 w-6 rounded-full border border-black" src="https://picsum.photos/id/64/50/50" alt="User" />
-             <img className="h-6 w-6 rounded-full border border-black" src="https://picsum.photos/id/91/50/50" alt="User" />
-             <img className="h-6 w-6 rounded-full border border-black" src="https://picsum.photos/id/177/50/50" alt="User" />
-          </div>
-          <span className="text-xs font-bold text-white tracking-wider">JOIN 2,400+ TRAVELERS</span>
-        </div>
-
         {/* Main Heading */}
         <h1 className="mb-4 text-7xl font-black uppercase tracking-tighter text-white md:text-9xl drop-shadow-2xl">
           BORED<br />
