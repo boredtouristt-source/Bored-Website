@@ -32,7 +32,7 @@ export const Hero: React.FC = () => {
       {/* Navbar */}
       <nav className="relative z-50 flex items-center justify-between px-6 py-6 md:px-12">
         <a href="https://boredtourist.com" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <LogoIcon className="h-10 w-10 text-xl" />
+          <img src="https://storage.googleapis.com/bored_tourist_media/Website/splash-logo.png" alt="Bored Tourist" className="h-10 w-10" />
           <span className="text-xl font-black tracking-tighter text-white">BORED TOURIST</span>
         </a>
         
