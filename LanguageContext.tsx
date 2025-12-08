@@ -17,6 +17,18 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const saved = localStorage.getItem('language') as Language;
     if (saved && (saved === 'en' || saved === 'pt')) {
       setLanguage(saved);
+      return;
+    }
+    // Detect browser language if not set
+    if (typeof window !== 'undefined' && window.navigator) {
+      const browserLang = window.navigator.language || window.navigator.languages?.[0] || '';
+      if (browserLang.toLowerCase().startsWith('pt')) {
+        setLanguage('pt');
+        localStorage.setItem('language', 'pt');
+      } else {
+        setLanguage('en');
+        localStorage.setItem('language', 'en');
+      }
     }
   }, []);
 

@@ -38,26 +38,18 @@ export const Hero: React.FC = () => {
           <img src="https://storage.googleapis.com/bored_tourist_media/Website/splash-logo.png" alt="Bored Tourist" className="h-10 w-10" />
           <span className="text-xl font-black tracking-tighter text-white">BORED TOURIST</span>
         </a>
-        
         <div className="hidden md:flex items-center gap-8 text-sm font-bold tracking-wide text-white">
           <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="hover:text-neon transition-colors cursor-pointer">{t.nav.howItWorks}</a>
-          
           {/* Language Selector */}
           <select 
-            className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-white/20 transition-colors"
+            className="bg-zinc-900/90 backdrop-blur-md border border-white/20 text-white px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-neon/20 transition-colors focus:bg-zinc-900/90"
             value={language}
             onChange={(e) => setLanguage(e.target.value as 'en' | 'pt')}
+            style={{ backgroundColor: '#18181b' }}
           >
             <option value="en">🇬🇧 EN</option>
             <option value="pt">🇵🇹 PT</option>
           </select>
-          
-          <button 
-            onClick={(e) => scrollToSection(e, 'signup')} 
-            className="bg-white text-black px-6 py-3 font-black uppercase tracking-wider hover:bg-neon transition-colors clip-path-polygon cursor-pointer"
-          >
-            {t.nav.getEarlyAccess}
-          </button>
         </div>
       </nav>
 
