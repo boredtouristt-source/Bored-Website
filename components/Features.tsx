@@ -60,33 +60,21 @@ export const Features: React.FC = () => {
           </div>
 
           {/* Center Phone Mockup */}
-          <div className="relative flex justify-center z-10 animate-subtle-wiggle">
-            {/* Floating stickers */}
-            <div className="absolute -left-4 top-20 z-20 rotate-[-6deg] rounded bg-white px-4 py-2 shadow-xl animate-pulse">
-              <div className="flex items-center gap-2">
-                 <span className="text-xs font-black uppercase text-black">Video First</span>
-              </div>
-            </div>
-            
-            <div className="absolute -right-10 bottom-20 z-20 rotate-[3deg] bg-neon px-4 py-1 shadow-xl">
-               <span className="text-xs font-black uppercase text-black">⚡ Instant Booking</span>
-            </div>
-
+          <div className="relative flex justify-center z-10">
             {/* Phone Body */}
             <div className="relative h-[600px] w-[300px] rounded-[3rem] border-[8px] border-zinc-800 bg-zinc-900 shadow-2xl overflow-hidden">
               {/* Screen Content */}
               <div className="h-full w-full bg-zinc-800 relative overflow-hidden rounded-[2.5rem]">
                  <video 
-                   className="h-full w-full object-cover scale-[1.02] origin-bottom" 
+                   className="h-full w-full object-cover" 
                    autoPlay 
                    muted 
                    loop 
                    playsInline
+                   webkit-playsinline="true"
                  >
-                   <source src="https://storage.googleapis.com/bored_tourist_media/videos/boredvideo.mov" type="video/mp4" />
+                   <source src="https://storage.googleapis.com/bored_tourist_media/Website/example23.mov" type="video/mp4" />
                  </video>
-                 
-                 <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
               </div>
             </div>
           </div>

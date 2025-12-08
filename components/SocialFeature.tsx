@@ -49,59 +49,23 @@ export const SocialFeature: React.FC = () => {
 
           {/* Right: Visual */}
           <div className="flex-1 relative order-1 lg:order-2 flex justify-center">
-             {/* Decorative Elements */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-neon/20 to-transparent blur-3xl rounded-full pointer-events-none"></div>
-
              {/* Phone Mockup */}
-             <div className="relative h-[650px] w-[320px] rounded-[3.5rem] border-[8px] border-zinc-800 bg-black shadow-2xl rotate-[-3deg] hover:rotate-0 transition-transform duration-700">
+             <div className="relative h-[650px] w-[320px] rounded-[3.5rem] border-[8px] border-zinc-800 bg-black shadow-2xl">
                 {/* Dynamic Island */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 h-7 w-28 bg-black rounded-b-2xl z-30"></div>
                 
                 {/* Screen Content */}
-                <div className="h-full w-full bg-zinc-900 rounded-[3rem] overflow-hidden relative group">
+                <div className="h-full w-full bg-zinc-900 rounded-[3rem] overflow-hidden relative">
                   <video 
-                     className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" 
+                     className="h-full w-full object-cover" 
                      autoPlay 
                      muted 
                      loop 
                      playsInline
+                     webkit-playsinline="true"
                    >
-                     <source src="https://storage.googleapis.com/bored_tourist_media/Website/example1%202.mov" type="video/mov" />
+                     <source src="https://storage.googleapis.com/bored_tourist_media/Website/example1%202.mov" type="video/mp4" />
                    </video>
-
-                   {/* UI Overlay: Simulating "Saved" state */}
-                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none">
-                      {/* Fake Social UI Header */}
-                      <div className="absolute top-12 left-6 right-6 flex justify-between items-center text-white/80">
-                         <div className="h-8 w-8 rounded-full bg-white/20 backdrop-blur-md"></div>
-                         <div className="h-1 w-12 rounded-full bg-white/20 backdrop-blur-md"></div>
-                      </div>
-
-                      {/* The "Magic" Notification */}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%]">
-                         <div className="bg-zinc-900/90 backdrop-blur-xl border border-neon/50 p-4 rounded-2xl shadow-2xl transform translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300">
-                            <div className="flex items-center gap-3 mb-3">
-                               <div className="bg-neon text-black p-2 rounded-lg">
-                                  <ShareIcon className="h-5 w-5" />
-                               </div>
-                               <div>
-                                  <p className="text-white font-bold text-sm leading-tight">Imported from Instagram</p>
-                                  <p className="text-gray-400 text-xs">Analysis complete</p>
-                               </div>
-                            </div>
-                            <div className="bg-black/50 p-3 rounded-lg border border-white/10">
-                               <p className="text-neon text-xs font-bold uppercase mb-1">Added to Itinerary</p>
-                               <p className="text-white text-sm font-semibold truncate">Hidden Rooftop Bar, Lisbon...</p>
-                            </div>
-                         </div>
-                      </div>
-
-                      {/* Fake Social UI Footer */}
-                      <div className="absolute bottom-10 left-6 text-white">
-                         <p className="font-bold text-sm mb-1">@lisbon_secrets</p>
-                         <p className="text-xs text-gray-300 max-w-[200px] truncate">You have to try this spot! The view is insane...</p>
-                      </div>
-                   </div>
                 </div>
              </div>
           </div>
