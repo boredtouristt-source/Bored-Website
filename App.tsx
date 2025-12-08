@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
 import { SocialFeature } from './components/SocialFeature';
-import { VibeCheck } from './components/VibeCheck';
 import { Footer } from './components/Footer';
 import { Preloader } from './components/Preloader';
 import { LanguageProvider } from './LanguageContext';
@@ -26,7 +25,6 @@ const App: React.FC = () => {
         <Hero />
         <Features />
         <SocialFeature />
-        <VibeCheck />
         <Footer />
       </main>
     </LanguageProvider>

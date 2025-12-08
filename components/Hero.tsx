@@ -41,7 +41,6 @@ export const Hero: React.FC = () => {
         
         <div className="hidden md:flex items-center gap-8 text-sm font-bold tracking-wide text-white">
           <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="hover:text-neon transition-colors cursor-pointer">{t.nav.howItWorks}</a>
-          <a href="#vibecheck" onClick={(e) => scrollToSection(e, 'vibecheck')} className="hover:text-neon transition-colors cursor-pointer">{t.nav.vibeCheck}</a>
           
           {/* Language Selector */}
           <select 
