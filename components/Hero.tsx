@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
           playsInline
           preload="auto"
         >
-          <source src="https://storage.googleapis.com/bored_tourist_media/videos/Lisbon_Tourist_Loop_Video.mp4" type="video/mp4" />
+          <source src="https://storage.googleapis.com/bored_tourist_media/Website/example1%202.mov" type="video/mp4" />
         </video>
         {/* Dark Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
