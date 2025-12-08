@@ -5,6 +5,7 @@ import { SocialFeature } from './components/SocialFeature';
 import { VibeCheck } from './components/VibeCheck';
 import { Footer } from './components/Footer';
 import { Preloader } from './components/Preloader';
+import { LanguageProvider } from './LanguageContext';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,14 +20,16 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <main className="min-h-screen w-full bg-black text-white selection:bg-neon selection:text-black relative">
-      <Preloader isLoading={isLoading} />
-      <Hero />
-      <Features />
-      <SocialFeature />
-      <VibeCheck />
-      <Footer />
-    </main>
+    <LanguageProvider>
+      <main className="min-h-screen w-full bg-black text-white selection:bg-neon selection:text-black relative">
+        <Preloader isLoading={isLoading} />
+        <Hero />
+        <Features />
+        <SocialFeature />
+        <VibeCheck />
+        <Footer />
+      </main>
+    </LanguageProvider>
   );
 };
 

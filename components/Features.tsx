@@ -1,7 +1,10 @@
 import React from 'react';
 import { LightningIcon, UsersIcon, ArrowRightIcon, DownloadIcon, PinIcon, BrainIcon } from './Icons';
+import { useLanguage } from '../LanguageContext';
 
 export const Features: React.FC = () => {
+  const { t } = useLanguage();
+  
   const scrollToSignup = (e: React.MouseEvent) => {
     e.preventDefault();
     const element = document.getElementById('signup');
@@ -15,9 +18,9 @@ export const Features: React.FC = () => {
       <div className="container mx-auto px-6 md:px-12">
         
         <div className="mb-20 text-center">
-          <span className="mb-4 inline-block text-sm font-bold uppercase tracking-widest text-neon">The App</span>
+          <span className="mb-4 inline-block text-sm font-bold uppercase tracking-widest text-neon">{t.features.title}</span>
           <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white">
-            Swipe. Discover. <span className="text-gray-500 italic">Actually</span> Have Fun.
+            {t.features.heading} <span className="text-gray-500 italic">{t.features.headingItalic}</span> {t.features.headingEnd}
           </h2>
         </div>
 
@@ -30,9 +33,9 @@ export const Features: React.FC = () => {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 group-hover:bg-neon transition-colors">
                 <LightningIcon className="h-6 w-6 text-white group-hover:text-black" />
               </div>
-              <h3 className="mb-2 text-2xl font-bold text-white">Doomscroll for Adventure</h3>
+              <h3 className="mb-2 text-2xl font-bold text-white">{t.features.feature1Title}</h3>
               <p className="text-gray-400 leading-relaxed">
-                The interface you know (TikTok style), applied to the world around you. Watch 15s clips of experiences, not just read boring reviews.
+                {t.features.feature1Desc}
               </p>
             </div>
 
@@ -41,9 +44,9 @@ export const Features: React.FC = () => {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 group-hover:bg-neon transition-colors">
                 <UsersIcon className="h-6 w-6 text-white group-hover:text-black" />
               </div>
-              <h3 className="mb-2 text-2xl font-bold text-white">Curated by Locals, Not Agencies</h3>
+              <h3 className="mb-2 text-2xl font-bold text-white">{t.features.feature2Title}</h3>
               <p className="text-gray-400 leading-relaxed">
-                We filter out the boring stuff. No generic "Yellow Bus" tours. Only authentic, high-energy experiences verified by our team.
+                {t.features.feature2Desc}
               </p>
             </div>
 
@@ -52,9 +55,9 @@ export const Features: React.FC = () => {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 group-hover:bg-neon transition-colors">
                 <DownloadIcon className="h-6 w-6 text-white group-hover:text-black" />
               </div>
-              <h3 className="mb-2 text-2xl font-bold text-white">1 Tap Save from Socials</h3>
+              <h3 className="mb-2 text-2xl font-bold text-white">{t.features.feature3Title}</h3>
               <p className="text-gray-400 leading-relaxed">
-                Import any experience you see on social media (Instagram, TikTok, etc.) with a single click.
+                {t.features.feature3Desc}
               </p>
             </div>
           </div>
@@ -89,17 +92,17 @@ export const Features: React.FC = () => {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 group-hover:bg-neon transition-colors">
                 <PinIcon className="h-6 w-6 text-white group-hover:text-black" />
               </div>
-              <h3 className="mb-2 text-2xl font-bold text-white">Live Adventure Map</h3>
+              <h3 className="mb-2 text-2xl font-bold text-white">{t.features.feature4Title}</h3>
               <p className="text-gray-400 leading-relaxed">
-                A real-time, interactive map view showing pinned locations of high-rated experiences and where other Bored Tourist users are currently checking in.
+                {t.features.feature4Desc}
               </p>
             </div>
 
             {/* CTA Box */}
             <div className="rounded-2xl bg-zinc-900 p-8 border border-zinc-800 hover:border-neon transition-colors">
-              <h3 className="mb-4 text-xl font-bold text-white">Ready to ditch the guide book?</h3>
+              <h3 className="mb-4 text-xl font-bold text-white">{t.features.ctaTitle}</h3>
               <button onClick={scrollToSignup} className="group flex items-center gap-2 text-neon font-black uppercase tracking-wide text-sm hover:gap-4 transition-all cursor-pointer">
-                Join The Waitlist <ArrowRightIcon className="h-4 w-4" />
+                {t.features.ctaButton} <ArrowRightIcon className="h-4 w-4" />
               </button>
             </div>
           </div>

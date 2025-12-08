@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRightIcon, InstagramIcon, ShareIcon } from './Icons';
+import { useLanguage } from '../LanguageContext';
 
 export const SocialFeature: React.FC = () => {
+  const { t } = useLanguage();
+  
   const scrollToSignup = (e: React.MouseEvent) => {
     e.preventDefault();
     const element = document.getElementById('signup');
@@ -22,29 +25,27 @@ export const SocialFeature: React.FC = () => {
           <div className="w-full text-center lg:text-left order-1 lg:order-1 lg:flex-1">
             <div className="inline-flex items-center gap-2 rounded-full border border-neon/30 bg-neon/10 px-4 py-1.5 mb-6 backdrop-blur-md">
               <InstagramIcon className="h-4 w-4 text-neon" />
-              <span className="text-xs font-black uppercase text-neon tracking-widest">The Game Changer</span>
+              <span className="text-xs font-black uppercase text-neon tracking-widest">{t.socialFeature.badge}</span>
             </div>
             
             <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-6 leading-[0.9]">
-              See it on <br />
-              <span className="text-neon">Socials.</span> <br />
-              Do it in <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Real Life.</span>
+              {t.socialFeature.title1} <br />
+              <span className="text-neon">{t.socialFeature.title2}</span> <br />
+              {t.socialFeature.title3} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{t.socialFeature.title4}</span>
             </h2>
 
             {/* Description and CTA - visible on desktop, hidden on mobile */}
             <div className="hidden lg:block">
               <p className="text-xl text-gray-400 font-medium mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Stop taking screenshots you'll never look at again. 
-                Share any reel or post from Instagram or TikTok directly to Bored Tourist, 
-                and our AI instantly match it to bookable adventures near you.
+                {t.socialFeature.description}
               </p>
 
               <button 
                 onClick={scrollToSignup} 
                 className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-black uppercase tracking-wider hover:bg-neon transition-all hover:scale-105"
               >
-                Get Early Access
+                {t.socialFeature.cta}
                 <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -79,16 +80,14 @@ export const SocialFeature: React.FC = () => {
           {/* Description and CTA - Order 3 on mobile, hidden on desktop */}
           <div className="w-full text-center lg:hidden order-3">
             <p className="text-xl text-gray-400 font-medium mb-10 max-w-xl mx-auto leading-relaxed">
-              Stop taking screenshots you'll never look at again. 
-              Share any reel or post from Instagram or TikTok directly to Bored Tourist, 
-              and our AI instantly match it to bookable adventures near you.
+              {t.socialFeature.description}
             </p>
 
             <button 
               onClick={scrollToSignup} 
               className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-black uppercase tracking-wider hover:bg-neon transition-all hover:scale-105"
             >
-              Get Early Access
+              {t.socialFeature.cta}
               <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

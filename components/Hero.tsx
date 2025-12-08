@@ -1,7 +1,10 @@
 import React from 'react';
 import { LogoIcon, PlayIcon } from './Icons';
+import { useLanguage } from '../LanguageContext';
 
 export const Hero: React.FC = () => {
+  const { language, setLanguage, t } = useLanguage();
+  
   const scrollToSection = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
@@ -37,19 +40,14 @@ export const Hero: React.FC = () => {
         </a>
         
         <div className="hidden md:flex items-center gap-8 text-sm font-bold tracking-wide text-white">
-          <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="hover:text-neon transition-colors cursor-pointer">HOW IT WORKS</a>
-          <a href="#vibecheck" onClick={(e) => scrollToSection(e, 'vibecheck')} className="hover:text-neon transition-colors cursor-pointer">VIBE CHECK</a>
+          <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="hover:text-neon transition-colors cursor-pointer">{t.nav.howItWorks}</a>
+          <a href="#vibecheck" onClick={(e) => scrollToSection(e, 'vibecheck')} className="hover:text-neon transition-colors cursor-pointer">{t.nav.vibeCheck}</a>
           
           {/* Language Selector */}
           <select 
             className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-white/20 transition-colors"
-            defaultValue="en"
-            onChange={(e) => {
-              // For now, just alert. Later you can implement full i18n
-              if (e.target.value === 'pt') {
-                alert('Português em breve! 🇵🇹');
-              }
-            }}
+            value={language}
+            onChange={(e) => setLanguage(e.target.value as 'en' | 'pt')}
           >
             <option value="en">🇬🇧 EN</option>
             <option value="pt">🇵🇹 PT</option>
@@ -59,7 +57,7 @@ export const Hero: React.FC = () => {
             onClick={(e) => scrollToSection(e, 'signup')} 
             className="bg-white text-black px-6 py-3 font-black uppercase tracking-wider hover:bg-neon transition-colors clip-path-polygon cursor-pointer"
           >
-            Get Early Access
+            {t.nav.getEarlyAccess}
           </button>
         </div>
       </nav>
@@ -74,7 +72,7 @@ export const Hero: React.FC = () => {
 
         {/* Subheading */}
         <p className="mb-10 max-w-xl text-lg md:text-xl text-gray-200 font-medium">
-          Boredom Is a Choice. We Are The Cure.
+          {t.hero.tagline}
         </p>
 
         {/* CTA Group */}
@@ -83,7 +81,7 @@ export const Hero: React.FC = () => {
             onClick={(e) => scrollToSection(e, 'signup')} 
             className="bg-neon text-black px-8 py-4 text-lg font-black uppercase tracking-wider hover:bg-white transition-colors shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] cursor-pointer"
           >
-            Join The Waitlist
+            {t.hero.cta}
           </button>
         </div>
       </div>
