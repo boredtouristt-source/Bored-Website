@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
         {/* Main Heading */}
         <h1 className="mb-4 text-7xl font-black uppercase tracking-tighter text-white md:text-9xl drop-shadow-2xl">
           BORED<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-400">TOURIST</span>
+          <span className="text-neon">TOURIST</span>
         </h1>
 
         {/* Subheading */}
@@ -78,13 +78,6 @@ export const Hero: React.FC = () => {
             className="bg-neon text-black px-8 py-4 text-lg font-black uppercase tracking-wider hover:bg-white transition-colors shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] cursor-pointer"
           >
             Join The Waitlist
-          </button>
-          <button 
-            onClick={(e) => scrollToSection(e, 'vibecheck')}
-            className="flex items-center gap-3 border border-white/30 bg-black/40 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-sm hover:bg-black/60 transition-all cursor-pointer"
-          >
-            <PlayIcon className="h-4 w-4" />
-            Watch the Vibe
           </button>
         </div>
       </div>

@@ -41,9 +41,14 @@ export const ArrowRightIcon = ({ className }: { className?: string }) => (
 );
 
 export const LogoIcon = ({ className }: { className?: string }) => (
-  <div className={`bg-neon text-black font-black flex items-center justify-center rounded-full ${className}`}>
-    B
-  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className={className}>
+    <path d="M256 48c114.953 0 208 93.047 208 208s-93.047 208-208 208S48 370.953 48 256 141.047 48 256 48m0-40C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8z"/>
+    <path d="M256 120c-75.132 0-136 60.868-136 136s60.868 136 136 136 136-60.868 136-136-60.868-136-136-136zm0 240c-57.346 0-104-46.654-104-104s46.654-104 104-104 104 46.654 104 104-46.654 104-104 104z"/>
+    <path d="M200 200h40v112h-40z"/>
+    <path d="M272 200h40v112h-40z"/>
+    <path d="M156 156h200v40H156z"/>
+    <path d="M200 312h112v40H200z"/>
+  </svg>
 );
 
 export const DownloadIcon = ({ className }: { className?: string }) => (
