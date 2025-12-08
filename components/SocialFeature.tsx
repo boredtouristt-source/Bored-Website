@@ -48,7 +48,7 @@ export const SocialFeature: React.FC = () => {
           </div>
 
           {/* Right: Visual */}
-          <div className="flex-1 relative order-1 lg:order-2 flex justify-center">
+          <div className="flex-1 relative order-1 lg:order-2 flex justify-center animate-subtle-wiggle">
              {/* Phone Mockup */}
              <div className="relative h-[650px] w-[320px] rounded-[3.5rem] border-[8px] border-zinc-800 bg-black shadow-2xl">
                 {/* Dynamic Island */}
@@ -66,6 +66,9 @@ export const SocialFeature: React.FC = () => {
                    >
                      <source src="https://storage.googleapis.com/bored_tourist_media/Website/example1%202.mov" type="video/mp4" />
                    </video>
+                   
+                   {/* Top overlay to hide status bar from screen recording */}
+                   <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black via-black/80 to-transparent z-10"></div>
                 </div>
              </div>
           </div>

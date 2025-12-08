@@ -60,7 +60,7 @@ export const Features: React.FC = () => {
           </div>
 
           {/* Center Phone Mockup */}
-          <div className="relative flex justify-center z-10">
+          <div className="relative flex justify-center z-10 animate-subtle-wiggle">
             {/* Phone Body */}
             <div className="relative h-[600px] w-[300px] rounded-[3rem] border-[8px] border-zinc-800 bg-zinc-900 shadow-2xl overflow-hidden">
               {/* Screen Content */}
@@ -75,6 +75,9 @@ export const Features: React.FC = () => {
                  >
                    <source src="https://storage.googleapis.com/bored_tourist_media/Website/example23.mov" type="video/mp4" />
                  </video>
+                 
+                 {/* Top overlay to hide status bar from screen recording */}
+                 <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black via-black/80 to-transparent z-10"></div>
               </div>
             </div>
           </div>
