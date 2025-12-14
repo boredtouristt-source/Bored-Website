@@ -76,14 +76,6 @@ export const Hero: React.FC = () => {
           >
             {t.hero.cta}
           </a>
-          <a 
-            href="https://apps.apple.com/cn/app/bored-tourist/id6755624970"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-black px-8 py-4 text-lg font-black uppercase tracking-wider hover:bg-neon transition-colors shadow-[4px_4px_0px_0px_rgba(163,230,53,1)] cursor-pointer"
-          >
-            {t.hero.downloadApp}
-          </a>
         </div>
       </div>
     </div>
