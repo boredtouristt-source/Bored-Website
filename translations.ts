@@ -7,7 +7,7 @@ export const translations = {
     },
     hero: {
       tagline: "Boredom Is a Choice. We Are The Cure.",
-      cta: "Join The Waitlist",
+      cta: "Download The App",
       downloadApp: "Download The App",
     },
     features: {
@@ -29,7 +29,7 @@ export const translations = {
       feature4Desc: "A real-time, interactive map view showing pinned locations of high-rated experiences and where other Bored Tourist users are currently checking in.",
       
       ctaTitle: "Ready to ditch the guide book?",
-      ctaButton: "Join The Waitlist",
+      ctaButton: "Download The App",
     },
     socialFeature: {
       badge: "The Game Changer",
@@ -38,7 +38,7 @@ export const translations = {
       title3: "Do it in",
       title4: "Real Life.",
       description: "Stop taking screenshots you'll never look at again. Share any reel or post from Instagram or TikTok directly to Bored Tourist, and our AI instantly match it to bookable adventures near you.",
-      cta: "Get Early Access",
+      cta: "Download The App",
     },
     vibeCheck: {
       badge: "See For Yourself",
@@ -70,8 +70,8 @@ export const translations = {
     },
     hero: {
       tagline: "Nós somos a cura para o turismo aborrecido!",
-      cta: "Junta-te à lista de espera",
-      downloadApp: "Baixar a App",
+      cta: "Baixa a App!",
+      downloadApp: "Baixa a App!",
     },
     features: {
       title: "A App",
@@ -92,16 +92,16 @@ export const translations = {
       feature4Desc: "Um mapa interativo em tempo real que te mostra onde outros utilizadores da Bored Tourist estão atualmente para nunca mais teres medo de ires numa aventura sozinho.",
       
       ctaTitle: "Pronto para viver experiências à séria?",
-      ctaButton: "Junta-te à lista de espera",
+      ctaButton: "Baixa a App!",
     },
     socialFeature: {
-      badge: "O Mudador de Jogo",
+      badge: "Game Changer",
       title1: "Vê nas redes.",
       title2: "",
       title3: "Vive na",
       title4: "vida real.",
       description: "Deixa de tirar screenshots que nunca mais vais ver. Partilha qualquer reel ou post do Instagram ou TikTok diretamente para o Bored Tourist, e a nossa IA encontra instantaneamente aventuras reserváveis perto de ti.",
-      cta: "Junta-te à lista de espera",
+      cta: "Baixa a App!",
     },
     vibeCheck: {
       badge: "Vê Por Ti Próprio",

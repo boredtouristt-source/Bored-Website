@@ -101,9 +101,14 @@ export const Features: React.FC = () => {
             {/* CTA Box */}
             <div className="rounded-2xl bg-zinc-900 p-8 border border-zinc-800 hover:border-neon transition-colors">
               <h3 className="mb-4 text-xl font-bold text-white">{t.features.ctaTitle}</h3>
-              <button onClick={scrollToSignup} className="group flex items-center gap-2 text-neon font-black uppercase tracking-wide text-sm hover:gap-4 transition-all cursor-pointer">
+              <a 
+                href="https://apps.apple.com/cn/app/bored-tourist/id6755624970"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 text-neon font-black uppercase tracking-wide text-sm hover:gap-4 transition-all cursor-pointer"
+              >
                 {t.features.ctaButton} <ArrowRightIcon className="h-4 w-4" />
-              </button>
+              </a>
             </div>
           </div>
 

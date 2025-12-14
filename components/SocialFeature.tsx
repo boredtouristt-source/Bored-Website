@@ -41,13 +41,15 @@ export const SocialFeature: React.FC = () => {
                 {t.socialFeature.description}
               </p>
 
-              <button 
-                onClick={scrollToSignup} 
+              <a 
+                href="https://apps.apple.com/cn/app/bored-tourist/id6755624970"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-black uppercase tracking-wider hover:bg-neon transition-all hover:scale-105"
               >
                 {t.socialFeature.cta}
                 <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -83,13 +85,15 @@ export const SocialFeature: React.FC = () => {
               {t.socialFeature.description}
             </p>
 
-            <button 
-              onClick={scrollToSignup} 
+            <a 
+              href="https://apps.apple.com/cn/app/bored-tourist/id6755624970"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-black uppercase tracking-wider hover:bg-neon transition-all hover:scale-105"
             >
               {t.socialFeature.cta}
               <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </div>
 
         </div>
