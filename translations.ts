@@ -8,6 +8,7 @@ export const translations = {
     hero: {
       tagline: "Boredom Is a Choice. We Are The Cure.",
       cta: "Join The Waitlist",
+      downloadApp: "Download The App",
     },
     features: {
       title: "The App",
@@ -70,6 +71,7 @@ export const translations = {
     hero: {
       tagline: "Nós somos a cura para o turismo aborrecido!",
       cta: "Junta-te à lista de espera",
+      downloadApp: "Baixar a App",
     },
     features: {
       title: "A App",
