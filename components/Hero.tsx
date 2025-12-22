@@ -69,7 +69,7 @@ export const Hero: React.FC = () => {
         {/* CTA Group */}
         <div className="flex flex-col items-center gap-4 md:flex-row">
           <a 
-            href="https://apps.apple.com/cn/app/bored-tourist/id6755624970"
+            href="https://apps.apple.com/pt/app/bored-tourist/id6755624970"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-neon text-black px-8 py-4 text-lg font-black uppercase tracking-wider hover:bg-white transition-colors shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] cursor-pointer"

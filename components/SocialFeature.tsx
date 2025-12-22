@@ -42,7 +42,7 @@ export const SocialFeature: React.FC = () => {
               </p>
 
               <a 
-                href="https://apps.apple.com/cn/app/bored-tourist/id6755624970"
+                href="https://apps.apple.com/pt/app/bored-tourist/id6755624970"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-black uppercase tracking-wider hover:bg-neon transition-all hover:scale-105"
@@ -86,7 +86,7 @@ export const SocialFeature: React.FC = () => {
             </p>
 
             <a 
-              href="https://apps.apple.com/cn/app/bored-tourist/id6755624970"
+              href="https://apps.apple.com/pt/app/bored-tourist/id6755624970"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-black uppercase tracking-wider hover:bg-neon transition-all hover:scale-105"
